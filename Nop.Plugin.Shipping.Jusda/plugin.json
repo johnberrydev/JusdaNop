@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Shipping rate computation",
+  "FriendlyName": "Jusda",
+  "SystemName": "Shipping.Jusda",
+  "Version": "1.0",
+  "SupportedVersions": [ "4.30" ],
+  "Author": "Jusda USA",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Shipping.Jusda.dll",
+  "Description": "This plugin offers shipping rates by Jusda"
+}
