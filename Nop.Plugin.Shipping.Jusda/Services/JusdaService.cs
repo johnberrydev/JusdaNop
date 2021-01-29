@@ -871,7 +871,7 @@ namespace Nop.Plugin.Shipping.Jusda.Services
                 var rateRequest = CreateRateRequest(shippingOptionRequest, saturdayDelivery);
 
                 //todo: will read from jusdasettings...
-                var url = _jusdaSettings.UseSandbox ? "http://localhost:57086/api/v1/" : "https://services2.jusdausa.com/api/v1/";// "http://jusda.azurewebsites.net/api/v1/";
+                var url = _jusdaSettings.UseSandbox ? "http://localhost:57086/api/v1/" : "https://services.jusdausa.com/api/v1/";// "http://jusda.azurewebsites.net/api/v1/";
 
                 System.Diagnostics.Debug.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(rateRequest, Newtonsoft.Json.Formatting.Indented));
 
@@ -885,7 +885,7 @@ namespace Nop.Plugin.Shipping.Jusda.Services
 
 
                 ret = rates.Select(r => new ShippingOption() {
-                    Name = "JUSDA - " + r.CarrierName,
+                    Name = "JUSDA - " + r.Service,
                     Rate = r.TotalCharge,
                     TransitDays = r.TransitDays
                 }).ToList();

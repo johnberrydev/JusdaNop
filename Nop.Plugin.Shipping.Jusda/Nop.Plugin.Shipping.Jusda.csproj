@@ -5,6 +5,7 @@
     <OutputPath>..\..\nop\Presentation\Nop.Web\Plugins\Shipping.Jusda</OutputPath>
     <!-- <OutputPath>..\redist\Shipping.Jusda</OutputPath> -->
     <OutDir>$(OutputPath)</OutDir>
+    <RedistDir>$(MSBuildProjectDirectory)\..\redist</RedistDir>
     <!--Set this parameter to true to get the dlls copied from the NuGet cache to the output of your project.
     You need to set this parameter to true if your plugin has a nuget package 
     to ensure that the dlls copied from the NuGet cache to the output of your project-->
@@ -60,5 +61,18 @@
     <MSBuild Projects="@(ClearPluginAssemblies)" Properties="PluginPath=$(MSBuildProjectDirectory)\$(OutDir)" Targets="NopClear" />
   </Target>
 
+  <Target Name="ZipOutputPath" AfterTargets="NopTarget">
+    <Delete Files="$(RedistDir)\Shipping.Jusda.Zip" />
+    <Delete Files="$(RedistDir)\**\*.*" />
+    <CreateItem Include="$(OutDir)\**\*.*">
+      <Output TaskParameter="Include" ItemName="PluginFiles" />
+    </CreateItem>
+    <Copy SourceFiles="@(PluginFiles)" DestinationFolder="$(RedistDir)\Shipping.Jusda\%(RecursiveDir)" />    
+    <ZipDirectory
+      Overwrite="true"
+      SourceDirectory="$(RedistDir)"
+      DestinationFile="$(RedistDir)\..\Shipping.Jusda.zip" />
+    <Move SourceFiles="$(RedistDir)\..\Shipping.Jusda.zip" DestinationFolder="$(RedistDir)" />
+  </Target>
 
 </Project>
