@@ -372,7 +372,7 @@ namespace Nop.Plugin.Shipping.Jusda.Services
         {
             var rateRequest = new Domain.RateRequest()
             {
-                Mode = "PARCEL",   //LTL,  PARCEL, ALL
+                Mode = "Parcel",   //LTL,  Parcel, ALL
                 //ShipperCity = "Los Angelas",
                 //ShipperStateProvince = "CA",
                 //ShipperCountry = "US",
@@ -872,6 +872,8 @@ namespace Nop.Plugin.Shipping.Jusda.Services
 
                 //todo: will read from jusdasettings...
                 var url = _jusdaSettings.UseSandbox ? "http://localhost:57086/api/v1/" : "https://services2.jusdausa.com/api/v1/";// "http://jusda.azurewebsites.net/api/v1/";
+
+                System.Diagnostics.Debug.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(rateRequest, Newtonsoft.Json.Formatting.Indented));
 
                 var response = await (url + "Rates")
                     .WithHeader("x-api-key", _jusdaSettings.AccessKey) //"3CDC325C-41DE-4594-867B-05E292368E31")        //todo: will read from jusdasettings...
