@@ -77,7 +77,7 @@ namespace Nop.Plugin.Shipping.Jusda
         /// </summary>
         public override string GetConfigurationPageUrl()
         {
-            return $"{_webHelper.GetStoreLocation()}Admin/UPSShipping/Configure";
+            return $"{_webHelper.GetStoreLocation()}Admin/JusdaShipping/Configure";
         }
 
         /// <summary>
@@ -92,9 +92,9 @@ namespace Nop.Plugin.Shipping.Jusda
                 //CustomerClassification = CustomerClassification.StandardListRates,
                 //PickupType = PickupType.OneTimePickup,
                 //PackagingType = PackagingType.ExpressBox,
-                PackingPackageVolume = 5184,
+                //PackingPackageVolume = 5184,
                 //PackingType = PackingType.PackByDimensions,
-                PassDimensions = true,
+                //PassDimensions = true,
                 WeightType = "LBS",
                 DimensionsType = "IN"
             });

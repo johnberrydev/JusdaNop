@@ -7,7 +7,7 @@
     Layout = "_ConfigurePlugin";
 }
 
-<form asp-controller="UPSShipping" asp-action="Configure" method="post">
+<form asp-controller="JusdaShipping" asp-action="Configure" method="post">
     <script>
         $(document).ready(function () {
             $("#PackingType").change(togglePackingType);
@@ -43,7 +43,7 @@
                         <span asp-validation-for="UseSandbox"></span>
                     </div>
                 </div>
-                <div class="form-group">
+                @* <div class="form-group">
                     <div class="col-md-3">
                         <nop-label asp-for="AccountNumber" />
                     </div>
@@ -51,7 +51,7 @@
                         <nop-editor asp-for="AccountNumber" />
                         <span asp-validation-for="AccountNumber"></span>
                     </div>
-                </div>
+                </div> *@
                 <div class="form-group">
                     <div class="col-md-3">
                         <nop-label asp-for="AccessKey" />
@@ -61,7 +61,7 @@
                         <span asp-validation-for="AccessKey"></span>
                     </div>
                 </div>
-                <div class="form-group">
+                @* <div class="form-group">
                     <div class="col-md-3">
                         <nop-label asp-for="Username" />
                     </div>
@@ -139,7 +139,7 @@
                             </div>
                         }
                     </div>
-                </div>
+                </div> *@
                 <div class="form-group">
                     <div class="col-md-3">
                         <nop-label asp-for="SaturdayDeliveryEnabled" />
@@ -149,7 +149,7 @@
                         <span asp-validation-for="SaturdayDeliveryEnabled"></span>
                     </div>
                 </div>
-                <div class="form-group">
+                @* <div class="form-group">
                     <div class="col-md-3">
                         <nop-label asp-for="PackingType" />
                     </div>
@@ -175,7 +175,7 @@
                         <nop-editor asp-for="PackingPackageVolume" />
                         <span asp-validation-for="PackingPackageVolume"></span>
                     </div>
-                </div>
+                </div> *@
                 <div class="form-group">
                     <div class="col-md-3">
                         <nop-label asp-for="WeightType" />
@@ -194,7 +194,7 @@
                         <span asp-validation-for="DimensionsType"></span>
                     </div>
                 </div>
-                <div class="form-group">
+                @* <div class="form-group">
                     <div class="col-md-3">
                         <nop-label asp-for="Tracing" />
                     </div>
@@ -202,7 +202,7 @@
                         <nop-editor asp-for="Tracing" />
                         <span asp-validation-for="Tracing"></span>
                     </div>
-                </div>
+                </div> *@
                 <div class="form-group">
                     <div class="col-md-9 col-md-offset-3">
                         <input type="submit" name="save" class="btn bg-blue" value="@T("Admin.Common.Save")" />

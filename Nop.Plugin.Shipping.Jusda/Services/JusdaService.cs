@@ -870,12 +870,11 @@ namespace Nop.Plugin.Shipping.Jusda.Services
                 //create request details
                 var rateRequest = CreateRateRequest(shippingOptionRequest, saturdayDelivery);
 
-
                 //todo: will read from jusdasettings...
-                var url = "http://localhost:57080/api/v1/";    //"http://jusda.azurewebsites.net/api/v1/
+                var url = _jusdaSettings.UseSandbox ? "http://localhost:57080/api/v1/" : "http://jusda.azurewebsites.net/api/v1/";
 
                 var response = await (url + "Rates")
-                    .WithHeader("x-api-key", "3CDC325C-41DE-4594-867B-05E292368E31")        //todo: will read from jusdasettings...
+                    .WithHeader("x-api-key", _jusdaSettings.AccessKey) //"3CDC325C-41DE-4594-867B-05E292368E31")        //todo: will read from jusdasettings...
                     .PostJsonAsync(rateRequest)
                     .ReceiveJson<List<RateResponse>>();
                 ;

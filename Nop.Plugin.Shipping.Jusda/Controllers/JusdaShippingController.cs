@@ -70,26 +70,26 @@ namespace Nop.Plugin.Shipping.Jusda.Controllers
             {
                 AccountNumber = _jusdaSettings.AccountNumber,
                 AccessKey = _jusdaSettings.AccessKey,
-                Username = _jusdaSettings.Username,
-                Password = _jusdaSettings.Password,
+                //Username = _jusdaSettings.Username,
+                //Password = _jusdaSettings.Password,
                 UseSandbox = _jusdaSettings.UseSandbox,
-                AdditionalHandlingCharge = _jusdaSettings.AdditionalHandlingCharge,
-                InsurePackage = _jusdaSettings.InsurePackage,
+                //AdditionalHandlingCharge = _jusdaSettings.AdditionalHandlingCharge,
+                //InsurePackage = _jusdaSettings.InsurePackage,
                 //CustomerClassification = (int)_jusdaSettings.CustomerClassification,
                 //PickupType = (int)_jusdaSettings.PickupType,
                 //PackagingType = (int)_jusdaSettings.PackagingType,
                 SaturdayDeliveryEnabled = _jusdaSettings.SaturdayDeliveryEnabled,
-                PassDimensions = _jusdaSettings.PassDimensions,
-                PackingPackageVolume = _jusdaSettings.PackingPackageVolume,
+                //PassDimensions = _jusdaSettings.PassDimensions,
+                //PackingPackageVolume = _jusdaSettings.PackingPackageVolume,
                 //PackingType = (int)_jusdaSettings.PackingType,
-                Tracing = _jusdaSettings.Tracing,
+                //Tracing = _jusdaSettings.Tracing,
                 WeightType = _jusdaSettings.WeightType,
                 DimensionsType = _jusdaSettings.DimensionsType
             };
 
             //prepare offered delivery services
-            var servicesCodes = _jusdaSettings.CarrierServicesOffered.Split(':', StringSplitOptions.RemoveEmptyEntries)
-                .Select(idValue => idValue.Trim('[', ']')).ToList();
+            //var servicesCodes = _jusdaSettings.CarrierServicesOffered.Split(':', StringSplitOptions.RemoveEmptyEntries)
+            //    .Select(idValue => idValue.Trim('[', ']')).ToList();
 
             //prepare available options
             //model.AvailableCustomerClassifications = CustomerClassification.DailyRates.ToSelectList(false)
@@ -117,7 +117,7 @@ namespace Nop.Plugin.Shipping.Jusda.Controllers
             //if (_measureService.GetMeasureDimensionBySystemKeyword(dimensionSystemName) == null)
             //    _notificationService.ErrorNotification($"Could not load '{dimensionSystemName}' <a href=\"{Url.Action("List", "Measure")}\" target=\"_blank\">measure dimension</a>", false);
 
-            return View("~/Plugins/Shipping.UPS/Views/Configure.cshtml", model);
+            return View("~/Plugins/Shipping.Jusda/Views/Configure.cshtml", model);
         }
 
         [HttpPost]
@@ -133,19 +133,19 @@ namespace Nop.Plugin.Shipping.Jusda.Controllers
             //save settings
             _jusdaSettings.AccountNumber = model.AccountNumber;
             _jusdaSettings.AccessKey = model.AccessKey;
-            _jusdaSettings.Username = model.Username;
-            _jusdaSettings.Password = model.Password;
+            //_jusdaSettings.Username = model.Username;
+            //_jusdaSettings.Password = model.Password;
             _jusdaSettings.UseSandbox = model.UseSandbox;
-            _jusdaSettings.AdditionalHandlingCharge = model.AdditionalHandlingCharge;
+            //_jusdaSettings.AdditionalHandlingCharge = model.AdditionalHandlingCharge;
             //_jusdaSettings.CustomerClassification = (CustomerClassification)model.CustomerClassification;
             //_jusdaSettings.PickupType = (PickupType)model.PickupType;
             //_jusdaSettings.PackagingType = (PackagingType)model.PackagingType;
-            _jusdaSettings.InsurePackage = model.InsurePackage;
+            //_jusdaSettings.InsurePackage = model.InsurePackage;
             _jusdaSettings.SaturdayDeliveryEnabled = model.SaturdayDeliveryEnabled;
-            _jusdaSettings.PassDimensions = model.PassDimensions;
-            _jusdaSettings.PackingPackageVolume = model.PackingPackageVolume;
+            //_jusdaSettings.PassDimensions = model.PassDimensions;
+            //_jusdaSettings.PackingPackageVolume = model.PackingPackageVolume;
             //_jusdaSettings.PackingType = (PackingType)model.PackingType;
-            _jusdaSettings.Tracing = model.Tracing;
+            //_jusdaSettings.Tracing = model.Tracing;
             _jusdaSettings.WeightType = model.WeightType;
             _jusdaSettings.DimensionsType = model.DimensionsType;
 
@@ -160,7 +160,7 @@ namespace Nop.Plugin.Shipping.Jusda.Controllers
                     //_upsService.GetUpsCode(DeliveryService._3DaySelect)
                 };
             }
-            _jusdaSettings.CarrierServicesOffered = string.Join(':', model.CarrierServices.Select(service => $"[{service}]"));
+            //_jusdaSettings.CarrierServicesOffered = string.Join(':', model.CarrierServices.Select(service => $"[{service}]"));
 
             _settingService.SaveSetting(_jusdaSettings);
 
