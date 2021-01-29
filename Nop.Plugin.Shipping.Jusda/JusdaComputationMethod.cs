@@ -95,7 +95,7 @@ namespace Nop.Plugin.Shipping.Jusda
                 //PackingPackageVolume = 5184,
                 //PackingType = PackingType.PackByDimensions,
                 //PassDimensions = true,
-                WeightType = "LBS",
+                WeightType = "LB",
                 DimensionsType = "IN"
             });
 

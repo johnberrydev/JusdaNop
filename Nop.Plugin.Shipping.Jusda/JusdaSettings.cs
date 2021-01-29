@@ -89,7 +89,7 @@ namespace Nop.Plugin.Shipping.Jusda
         // public bool Tracing { get; set; }
 
         // /// <summary>
-        // /// Gets or sets package weight type (LBS or KGS)
+        // /// Gets or sets package weight type (LB or KG)
         // /// </summary>
         public string WeightType { get; set; }
 

@@ -105,7 +105,7 @@ namespace Nop.Plugin.Shipping.Jusda.Controllers
             //    var serviceCode = _upsService.GetUpsCode((DeliveryService)int.Parse(item.Value));
             //    return new SelectListItem($"UPS {item.Text?.TrimStart('_')}", serviceCode, servicesCodes.Contains(serviceCode));
             //}).ToList();
-            model.AvaliableWeightTypes = new List<SelectListItem> { new SelectListItem("LBS", "LBS"), new SelectListItem("KGS", "KGS") };
+            model.AvaliableWeightTypes = new List<SelectListItem> { new SelectListItem("LB", "LB"), new SelectListItem("KG", "KG") };
             model.AvaliableDimensionsTypes = new List<SelectListItem> { new SelectListItem("IN", "IN"), new SelectListItem("CM", "CM") };
 
             //check measures

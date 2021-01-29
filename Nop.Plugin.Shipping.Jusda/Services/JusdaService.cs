@@ -531,12 +531,12 @@ namespace Nop.Plugin.Shipping.Jusda.Services
                     Pieces = item.GetQuantity(),
                     PackType = null,    //TODO???
                     Weight = GetWeightForSingleItem(item.ShoppingCartItem, shippingOptionRequest.Customer, item.Product),
-                    WeightUnit = "KG",  //TODO
+                    WeightUnit = _jusdaSettings.WeightType,
                     Length = (int)dims.length,   //TODO:  decimal to int?
                     Width = (int)dims.width,     //TODO:  decimal to int?
                     Height = (int)dims.height,   //TODO:  decimal to int?
-                    DimUnit = "IN",     //TODO
-                    FreightClass = 1,
+                    DimUnit = _jusdaSettings.DimensionsType,
+                    FreightClass = 1,   //what is this?!?!?
                     Nmfc = null,
                     Hazardous = false
                 });
@@ -871,7 +871,7 @@ namespace Nop.Plugin.Shipping.Jusda.Services
                 var rateRequest = CreateRateRequest(shippingOptionRequest, saturdayDelivery);
 
                 //todo: will read from jusdasettings...
-                var url = _jusdaSettings.UseSandbox ? "http://localhost:57080/api/v1/" : "http://jusda.azurewebsites.net/api/v1/";
+                var url = _jusdaSettings.UseSandbox ? "http://localhost:57086/api/v1/" : "http://jusda.azurewebsites.net/api/v1/";
 
                 var response = await (url + "Rates")
                     .WithHeader("x-api-key", _jusdaSettings.AccessKey) //"3CDC325C-41DE-4594-867B-05E292368E31")        //todo: will read from jusdasettings...
@@ -882,6 +882,11 @@ namespace Nop.Plugin.Shipping.Jusda.Services
                 var rates = response.OrderBy(r => r.DiscountedCharge);
 
 
+                ret = rates.Select(r => new ShippingOption() {
+                    Name = r.CarrierName,
+                    Rate = r.TotalCharge,
+                    TransitDays = r.TransitDays
+                }).ToList();
 
                 ////get rate response
                 //var rateResponse = GetRatesAsync(request).Result;
@@ -906,7 +911,7 @@ namespace Nop.Plugin.Shipping.Jusda.Services
             catch (Exception exception)
             {
                 //log errors
-                var message = $"Error while getting UPS rates{Environment.NewLine}{exception.Message}";
+                var message = $"Error while getting Jusda rates{Environment.NewLine}{exception.Message}";
                 _logger.Error(message, exception, shippingOptionRequest.Customer);
 
                 return (new List<ShippingOption>(), message);
@@ -1025,7 +1030,7 @@ namespace Nop.Plugin.Shipping.Jusda.Services
         /// <returns>Represents a response of getting shipping rate options</returns>
         public async virtual Task<GetShippingOptionResponse> GetRates(GetShippingOptionRequest shippingOptionRequest)
         {
-            var weightSystemName = _jusdaSettings.WeightType switch { "LBS" => "lb", "KGS" => "kg", _ => null };
+            var weightSystemName = _jusdaSettings.WeightType switch { "LB" => "lb", "KG" => "kg", _ => null };
             _measureWeight = _measureService.GetMeasureWeightBySystemKeyword(weightSystemName)
                 ?? throw new NopException($"Jusda shipping service. Could not load \"{weightSystemName}\" measure weight");
 
