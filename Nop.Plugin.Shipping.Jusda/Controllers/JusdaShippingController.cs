@@ -78,7 +78,7 @@ namespace Nop.Plugin.Shipping.Jusda.Controllers
                 //CustomerClassification = (int)_jusdaSettings.CustomerClassification,
                 //PickupType = (int)_jusdaSettings.PickupType,
                 //PackagingType = (int)_jusdaSettings.PackagingType,
-                SaturdayDeliveryEnabled = _jusdaSettings.SaturdayDeliveryEnabled,
+                //SaturdayDeliveryEnabled = _jusdaSettings.SaturdayDeliveryEnabled,
                 //PassDimensions = _jusdaSettings.PassDimensions,
                 //PackingPackageVolume = _jusdaSettings.PackingPackageVolume,
                 //PackingType = (int)_jusdaSettings.PackingType,
@@ -88,8 +88,8 @@ namespace Nop.Plugin.Shipping.Jusda.Controllers
             };
 
             //prepare offered delivery services
-            //var servicesCodes = _jusdaSettings.CarrierServicesOffered.Split(':', StringSplitOptions.RemoveEmptyEntries)
-            //    .Select(idValue => idValue.Trim('[', ']')).ToList();
+            var servicesCodes = _jusdaSettings.CarrierServicesOffered.Split(':', StringSplitOptions.RemoveEmptyEntries)
+                .Select(idValue => idValue.Trim('[', ']')).ToList();
 
             //prepare available options
             //model.AvailableCustomerClassifications = CustomerClassification.DailyRates.ToSelectList(false)
@@ -105,6 +105,25 @@ namespace Nop.Plugin.Shipping.Jusda.Controllers
             //    var serviceCode = _upsService.GetUpsCode((DeliveryService)int.Parse(item.Value));
             //    return new SelectListItem($"UPS {item.Text?.TrimStart('_')}", serviceCode, servicesCodes.Contains(serviceCode));
             //}).ToList();
+            model.AvailableCarrierServices = new List<SelectListItem>() {
+                new SelectListItem() { Value = "UPS Next Day Air" },
+                new SelectListItem() { Value = "UPS 2Nd Day Air" },
+                new SelectListItem() { Value = "UPS Next Day Air Early" },
+                new SelectListItem() { Value = "UPS Next Day Air Saver" },
+                new SelectListItem() { Value = "UPS 2Nd Day Air A.M." },
+                new SelectListItem() { Value = "UPS 3 Day Select" },
+                new SelectListItem() { Value = "UPS Ground" },
+                new SelectListItem() { Value = "FedEx Priority Overnight" },
+                new SelectListItem() { Value = "FedEx First Overnight" },
+                new SelectListItem() { Value = "FedEx Standard Overnight" },
+                new SelectListItem() { Value = "FedEx 2Day" },
+                new SelectListItem() { Value = "FedEx 2Day A.M." },
+                new SelectListItem() { Value = "FedEx Ground" },
+                new SelectListItem() { Value = "FedEx Express Saver" }
+            };
+            model.AvailableCarrierServices.ToList().ForEach(item => {
+                item.Selected = servicesCodes.Contains(item.Value);
+            });
             model.AvaliableWeightTypes = new List<SelectListItem> { new SelectListItem("LB", "LB"), new SelectListItem("KG", "KG") };
             model.AvaliableDimensionsTypes = new List<SelectListItem> { new SelectListItem("IN", "IN"), new SelectListItem("CM", "CM") };
 
@@ -141,7 +160,7 @@ namespace Nop.Plugin.Shipping.Jusda.Controllers
             //_jusdaSettings.PickupType = (PickupType)model.PickupType;
             //_jusdaSettings.PackagingType = (PackagingType)model.PackagingType;
             //_jusdaSettings.InsurePackage = model.InsurePackage;
-            _jusdaSettings.SaturdayDeliveryEnabled = model.SaturdayDeliveryEnabled;
+            //_jusdaSettings.SaturdayDeliveryEnabled = model.SaturdayDeliveryEnabled;
             //_jusdaSettings.PassDimensions = model.PassDimensions;
             //_jusdaSettings.PackingPackageVolume = model.PackingPackageVolume;
             //_jusdaSettings.PackingType = (PackingType)model.PackingType;
@@ -154,13 +173,19 @@ namespace Nop.Plugin.Shipping.Jusda.Controllers
             {
                 model.CarrierServices = new List<string>
                 {
+                    "UPS Next Day Air",
+                    "UPS Ground",
+                    "FedEx Ground",
+                    "FedEx Priority Overnight",
+                    "FedEx First Overnight",
+                    "FedEx Standard Overnight",
                     //_upsService.GetUpsCode(DeliveryService.Ground),
                     //_upsService.GetUpsCode(DeliveryService.WorldwideExpedited),
                     //_upsService.GetUpsCode(DeliveryService.Standard),
                     //_upsService.GetUpsCode(DeliveryService._3DaySelect)
                 };
             }
-            //_jusdaSettings.CarrierServicesOffered = string.Join(':', model.CarrierServices.Select(service => $"[{service}]"));
+            _jusdaSettings.CarrierServicesOffered = string.Join(':', model.CarrierServices.Select(service => $"[{service}]"));
 
             _settingService.SaveSetting(_jusdaSettings);
 

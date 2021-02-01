@@ -25,64 +25,64 @@ namespace Nop.Plugin.Shipping.Jusda.Models
 
         #region Properties
 
-        [NopResourceDisplayName("Plugins.Shipping.UPS.Fields.AccountNumber")]
+        [NopResourceDisplayName("Plugins.Shipping.Jusda.Fields.AccountNumber")]
         public string AccountNumber { get; set; }
 
-        [NopResourceDisplayName("Plugins.Shipping.UPS.Fields.AccessKey")]
+        [NopResourceDisplayName("Plugins.Shipping.Jusda.Fields.AccessKey")]
         public string AccessKey { get; set; }
 
-        [NopResourceDisplayName("Plugins.Shipping.UPS.Fields.Username")]
+        [NopResourceDisplayName("Plugins.Shipping.Jusda.Fields.Username")]
         public string Username { get; set; }
 
-        [NopResourceDisplayName("Plugins.Shipping.UPS.Fields.Password")]
+        [NopResourceDisplayName("Plugins.Shipping.Jusda.Fields.Password")]
         public string Password { get; set; }
 
-        [NopResourceDisplayName("Plugins.Shipping.UPS.Fields.UseSandbox")]
+        [NopResourceDisplayName("Plugins.Shipping.Jusda.Fields.UseSandbox")]
         public bool UseSandbox { get; set; }
 
-        [NopResourceDisplayName("Plugins.Shipping.UPS.Fields.AdditionalHandlingCharge")]
+        [NopResourceDisplayName("Plugins.Shipping.Jusda.Fields.AdditionalHandlingCharge")]
         public decimal AdditionalHandlingCharge { get; set; }
 
-        [NopResourceDisplayName("Plugins.Shipping.UPS.Fields.InsurePackage")]
+        [NopResourceDisplayName("Plugins.Shipping.Jusda.Fields.InsurePackage")]
         public bool InsurePackage { get; set; }
 
-        [NopResourceDisplayName("Plugins.Shipping.UPS.Fields.CustomerClassification")]
+        [NopResourceDisplayName("Plugins.Shipping.Jusda.Fields.CustomerClassification")]
         public int CustomerClassification { get; set; }
         public IList<SelectListItem> AvailableCustomerClassifications { get; set; }
 
-        [NopResourceDisplayName("Plugins.Shipping.UPS.Fields.PickupType")]
+        [NopResourceDisplayName("Plugins.Shipping.Jusda.Fields.PickupType")]
         public int PickupType { get; set; }
         public IList<SelectListItem> AvailablePickupTypes { get; set; }
 
-        [NopResourceDisplayName("Plugins.Shipping.UPS.Fields.PackagingType")]
+        [NopResourceDisplayName("Plugins.Shipping.Jusda.Fields.PackagingType")]
         public int PackagingType { get; set; }
         public IList<SelectListItem> AvailablePackagingTypes { get; set; }
 
-        [NopResourceDisplayName("Plugins.Shipping.UPS.Fields.AvailableCarrierServices")]
+        [NopResourceDisplayName("Plugins.Shipping.Jusda.Fields.AvailableCarrierServices")]
         public IList<SelectListItem> AvailableCarrierServices { get; set; }
         public IList<string> CarrierServices { get; set; }
 
-        [NopResourceDisplayName("Plugins.Shipping.UPS.Fields.SaturdayDeliveryEnabled")]
+        [NopResourceDisplayName("Plugins.Shipping.Jusda.Fields.SaturdayDeliveryEnabled")]
         public bool SaturdayDeliveryEnabled { get; set; }
 
-        [NopResourceDisplayName("Plugins.Shipping.UPS.Fields.PassDimensions")]
+        [NopResourceDisplayName("Plugins.Shipping.Jusda.Fields.PassDimensions")]
         public bool PassDimensions { get; set; }
 
-        [NopResourceDisplayName("Plugins.Shipping.UPS.Fields.PackingPackageVolume")]
+        [NopResourceDisplayName("Plugins.Shipping.Jusda.Fields.PackingPackageVolume")]
         public int PackingPackageVolume { get; set; }
 
-        [NopResourceDisplayName("Plugins.Shipping.UPS.Fields.PackingType")]
+        [NopResourceDisplayName("Plugins.Shipping.Jusda.Fields.PackingType")]
         public int PackingType { get; set; }
         public IList<SelectListItem> AvaliablePackingTypes { get; set; }
 
-        [NopResourceDisplayName("Plugins.Shipping.UPS.Fields.Tracing")]
+        [NopResourceDisplayName("Plugins.Shipping.Jusda.Fields.Tracing")]
         public bool Tracing { get; set; }
 
-        [NopResourceDisplayName("Plugins.Shipping.UPS.Fields.WeightType")]
+        [NopResourceDisplayName("Plugins.Shipping.Jusda.Fields.WeightType")]
         public string WeightType { get; set; }
         public IList<SelectListItem> AvaliableWeightTypes { get; set; }
 
-        [NopResourceDisplayName("Plugins.Shipping.UPS.Fields.DimensionsType")]
+        [NopResourceDisplayName("Plugins.Shipping.Jusda.Fields.DimensionsType")]
         public string DimensionsType { get; set; }
         public IList<SelectListItem> AvaliableDimensionsTypes { get; set; }
 

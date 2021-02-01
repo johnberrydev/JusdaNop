@@ -881,11 +881,13 @@ namespace Nop.Plugin.Shipping.Jusda.Services
                     .ReceiveJson<List<RateResponse>>();
                 ;
 
-                var rates = response.OrderBy(r => r.DiscountedCharge);
-
+                var rates = response
+                    .Where(r => _jusdaSettings.CarrierServicesOffered != null && _jusdaSettings.CarrierServicesOffered.Contains(r.Service))
+                    .OrderBy(r => r.TransitDays)
+                    .ThenBy(r => r.TotalCharge);
 
                 ret = rates.Select(r => new ShippingOption() {
-                    Name = "JUSDA - " + r.Service,
+                    Name = r.Service,
                     Rate = r.TotalCharge,
                     TransitDays = r.TransitDays
                 }).ToList();
@@ -1055,16 +1057,16 @@ namespace Nop.Plugin.Shipping.Jusda.Services
                 response.Errors.Add(error);
 
             //get rates for Saturday delivery
-            if (_jusdaSettings.SaturdayDeliveryEnabled)
-            {
-                var (saturdayShippingOptions, saturdayError) = await GetShippingOptions(shippingOptionRequest, true);
-                foreach (var shippingOption in saturdayShippingOptions)
-                {
-                    response.ShippingOptions.Add(shippingOption);
-                }
-                if (!string.IsNullOrEmpty(saturdayError))
-                    response.Errors.Add(saturdayError);
-            }
+            // if (_jusdaSettings.SaturdayDeliveryEnabled)
+            // {
+            //     var (saturdayShippingOptions, saturdayError) = await GetShippingOptions(shippingOptionRequest, true);
+            //     foreach (var shippingOption in saturdayShippingOptions)
+            //     {
+            //         response.ShippingOptions.Add(shippingOption);
+            //     }
+            //     if (!string.IsNullOrEmpty(saturdayError))
+            //         response.Errors.Add(saturdayError);
+            // }
 
             if (response.ShippingOptions.Any())
                 response.Errors.Clear();

@@ -56,12 +56,12 @@ namespace Nop.Plugin.Shipping.Jusda
         // /// <summary>
         // /// Gets or sets offered carrier services
         // /// </summary>
-        // public string CarrierServicesOffered { get; set; }
+        public string CarrierServicesOffered { get; set; }
 
         // /// <summary>
         // /// Gets or sets a value indicating whether Saturday Delivery enabled
         // /// </summary>
-        public bool SaturdayDeliveryEnabled { get; set; }
+        //public bool SaturdayDeliveryEnabled { get; set; }
 
         // /// <summary>
         // /// Gets or sets a value indicating whether to insure packages
